@@ -19,13 +19,18 @@ function resolvePromise(promise, x, onFullfilled, onRejected) {
 
     if (typeof then === "function") {
       let called = false;
-      // TODO: set called
       try {
         const resp = (y) => {
-          resolvePromise(promise, y, onFullfilled, onRejected);
+          if (!called) {
+            called = true;
+            resolvePromise(promise, y, onFullfilled, onRejected);
+          }
         };
         const rejp = (r) => {
-          onRejected(r);
+          if (!called) {
+            called = true;
+            onRejected(r);
+          }
         };
         then.call(x, resp, rejp);
       } catch (e) {
@@ -36,7 +41,7 @@ function resolvePromise(promise, x, onFullfilled, onRejected) {
       onFullfilled(x);
     }
   } else {
-    // x is not an object or function ,fullfill promise with x
+    // x is not an object or function, fullfill promise with x
     onFullfilled(x);
   }
 }
