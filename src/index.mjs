@@ -27,7 +27,7 @@ function resolvePromise(promise, x, onFullfilled, onRejected) {
         const rejp = (r) => {
           onRejected(r);
         };
-        then.apply(x, resp, rejp);
+        then.call(x, resp, rejp);
       } catch (e) {
         !called && onRejected(e);
       }
