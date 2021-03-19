@@ -21,7 +21,7 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "eslint ./src**/*",
-    "test": "yarn lint",
+    "test": "node --experimental-repl-await --experimental-modules .\\test\\index.mjs",
     "build": "yarn lint && tsc -p tsconfig.json"
   }
 }
