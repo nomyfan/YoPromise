@@ -67,7 +67,7 @@ export class YoPromise {
 
   then(onFullfilled, onRejected) {
     function resolve(value, promise, func, res, rej) {
-      let x;
+      let x = value;
       if (typeof func === "function") {
         try {
           x = func(value);
