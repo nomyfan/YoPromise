@@ -14,7 +14,7 @@ function resolvePromise(promise, x, onFullfilled, onRejected) {
     try {
       then = x.then;
     } catch (e) {
-      onRejected && onRejected(e);
+      onRejected(e);
     }
 
     if (typeof then === "function") {
@@ -25,19 +25,19 @@ function resolvePromise(promise, x, onFullfilled, onRejected) {
           resolvePromise(promise, y, onFullfilled, onRejected);
         };
         const rejp = (r) => {
-          onRejected && onRejected(r);
+          onRejected(r);
         };
         then.apply(x, resp, rejp);
       } catch (e) {
-        !called && onRejected && onRejected(e);
+        !called && onRejected(e);
       }
     } else {
       // x is not thenable
-      onFullfilled && onFullfilled(x);
+      onFullfilled(x);
     }
   } else {
     // x is not an object or function ,fullfill promise with x
-    onFullfilled && onFullfilled(x);
+    onFullfilled(x);
   }
 }
 
