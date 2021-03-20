@@ -1,8 +1,8 @@
 {
-  "name": "promise-impl",
+  "name": "yopromise",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/Nomyfan/promise-impl.git",
+  "repository": "https://github.com/Nomyfan/YoPromise.git",
   "author": "nomyfan <Nomyfan@live.com>",
   "license": "MIT",
   "devDependencies": {
