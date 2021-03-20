@@ -3,11 +3,8 @@
   "parserOptions": {
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
-    "prettier"
-  ],
-  "rules": {}
+  "extends": ["plugin:prettier/recommended", "prettier"],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  }
 }
