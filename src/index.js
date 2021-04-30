@@ -60,6 +60,10 @@ function resolvePromise(promise, x, resolve, reject) {
 
 function tryResolvePromise(promise, x, map, resolve, reject, passdown) {
   if (typeof map !== "function") {
+    // The onFulfilled or onRejected callback is not provided.
+    //
+    // In this case, we just passdown the previous promise's result to the next promise.
+    // `passdown` can be `resolve` or `reject` of the next promise.
     passdown(x);
   } else {
     try {
