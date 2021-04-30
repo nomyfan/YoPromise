@@ -72,20 +72,19 @@ function tryResolvePromise(promise, x, map, resolve, reject, passdown) {
 
 class YoPromise {
   constructor(resolver) {
-    this.value = null;
     this.status = PENDING;
-    this.reason = undefined;
+    this.result = undefined;
     this.fulfilledCbs = [];
     this.rejectCbs = [];
 
     const onFullfilled = (value) => {
-      this.value = value;
+      this.result = value;
       this.status = FULFILLED;
 
       this.fulfilledCbs.forEach((cb) => cb(value));
     };
     const onRejected = (reason) => {
-      this.reason = reason;
+      this.result = reason;
       this.status = REJECTED;
 
       this.rejectCbs.forEach((cb) => cb(reason));
@@ -104,7 +103,7 @@ class YoPromise {
         setTimeout(() => {
           tryResolvePromise(
             promise2,
-            this.value,
+            this.result,
             onFulfilled,
             resolve,
             reject,
@@ -121,7 +120,7 @@ class YoPromise {
         setTimeout(() => {
           tryResolvePromise(
             promise2,
-            this.reason,
+            this.result,
             onRejected,
             resolve,
             reject,
